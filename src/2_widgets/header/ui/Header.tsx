@@ -6,7 +6,7 @@ import {
 } from "@shared/ui/shadcn/navigation-menu";
 import { NavLink } from "react-router";
 
-import logo from "@assets/logo.avif";
+import { Logo } from "@assets/icons/logo/Logo.tsx";
 
 const navLinks = [
     { id: 1, title: "Home", path: "/" },
@@ -17,7 +17,7 @@ export const Header = () => {
     return (
         <header className="sticky-nav">
             <div className="flex items-center justify-around">
-                <img className="w-40" src={logo} alt="Games" />
+                <Logo />
                 <NavigationMenu>
                     <NavigationMenuList>
                         {navLinks.map((item) => (
