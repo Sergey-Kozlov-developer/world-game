@@ -1,4 +1,5 @@
 import type { IGame } from "@entities/game/model/types.ts";
+import { Card, CardDescription, CardHeader, CardTitle } from "@ui/shadcn/card.tsx";
 
 interface IGameCardProps {
     game: IGame;
@@ -6,10 +7,15 @@ interface IGameCardProps {
 
 export const GameCard = ({ game }: IGameCardProps) => {
     return (
-        <div className="game-card">
-            <img src={game.thumbnail} alt={game.title} />
-            <h3>{game.title}</h3>
-            <p>{game.short_description}</p>
-        </div>
+        <Card className="relative mx-auto w-full max-w-sm pt-0">
+            <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
+            <img src={game.thumbnail} alt="" />
+            <CardHeader>
+                <CardTitle>{game.title}</CardTitle>
+            </CardHeader>
+            <CardDescription>
+                {game.short_description}
+            </CardDescription>
+        </Card>
     );
 };
