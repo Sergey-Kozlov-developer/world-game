@@ -3,25 +3,59 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel,
+    SelectLabel, SelectSeparator,
     SelectTrigger,
     SelectValue,
 } from "@ui/shadcn/select.tsx";
+import type { IFilterProps } from "@features/filter/ui/Filter.props.ts";
+import { useCallback } from "react";
 
-export const Filter = () => {
+export const Filter = ({
+    label,
+    value,
+    placeholder,
+    options,
+    onChange,
+}: IFilterProps) => {
+
+    const handleChange = useCallback(
+        (val: string) => {
+            onChange(val === "All" ? "" : val);
+        },
+        [onChange]
+    );
+
     return (
-        <Select>
+        <Select value={value || "All"} onValueChange={handleChange}>
             <SelectTrigger className="w-full max-w-48">
-                <SelectValue placeholder="Select a filter" />
+                <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent>
                 <SelectGroup>
-                    <SelectLabel>Filter</SelectLabel>
-                    <SelectItem value='all' className='font-bold'>All</SelectItem>
-                    <SelectItem value='genre'>Genre</SelectItem>
-                    <SelectItem value='platform'>Platform</SelectItem>
+                    <SelectLabel>{label}</SelectLabel>
+                    {options.map((option) => (
+                        <SelectItem
+                            key={option.value}
+                            value={option.value}
+                            className="font-bold"
+                        >
+                            {option.label}
+                        </SelectItem>
+                    ))}
                 </SelectGroup>
-
+                <SelectSeparator />
+                <SelectGroup>
+                    <SelectLabel>{label}</SelectLabel>
+                    {options.map((option) => (
+                        <SelectItem
+                            key={option.value}
+                            value={option.value}
+                            className="font-bold"
+                        >
+                            {option.label}
+                        </SelectItem>
+                    ))}
+                </SelectGroup>
             </SelectContent>
         </Select>
     );

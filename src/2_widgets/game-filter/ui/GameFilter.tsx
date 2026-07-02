@@ -1,9 +1,9 @@
-import { Filter } from "@features/filter";
+import { ChangeFilter } from "@features/filter";
 
 export const GameFilter = () => {
     return (
         <div>
-            <Filter />
+            <ChangeFilter />
         </div>
     );
 };
