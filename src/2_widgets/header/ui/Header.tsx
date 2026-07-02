@@ -16,7 +16,7 @@ const navLinks = [
 export const Header = () => {
     return (
         <header className="sticky-nav">
-            <div className="flex items-center justify-around">
+            <div className="flex items-center justify-between">
                 <Logo />
                 <NavigationMenu>
                     <NavigationMenuList>

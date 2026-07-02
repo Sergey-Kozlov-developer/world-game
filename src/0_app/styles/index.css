@@ -122,7 +122,7 @@
 
 
 @theme {
-    --font-family-lobster: "LobsterTwo", sans-serif;
+    --font-famaly-cause: "Cause", sans-serif;
 
     /* --default-font-family: "LobsterTwo", sans-serif; */
 
@@ -133,15 +133,50 @@
 
     body {
 
-        font-family: var(--font-family-lobster), sans-serif;
+        font-family: var(--font-famaly-cause), sans-serif;
     }
 
     @font-face {
-        font-family: "LobsterTwo";
+        font-family: "Cause";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url("./../../5_shared/assets/fonts/Cause-Light.woff2") format("woff2");
+    }
+    @font-face {
+        font-family: "Cause";
         font-style: normal;
         font-weight: 400;
         font-display: swap;
-        src: url("./../../5_shared/assets/fonts/LobsterTwo-Regular.woff2") format("woff2");
+        src: url("./../../5_shared/assets/fonts/Cause-Regular.woff2") format("woff2");
+    }
+    @font-face {
+        font-family: "Cause";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("./../../5_shared/assets/fonts/Cause-Medium.woff2") format("woff2");
+    }
+    @font-face {
+        font-family: "Cause";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url("./../../5_shared/assets/fonts/Cause-SemiBold.woff2") format("woff2");
+    }
+    @font-face {
+        font-family: "Cause";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("./../../5_shared/assets/fonts/Cause-Bold.woff2") format("woff2");
+    }
+    @font-face {
+        font-family: "Cause";
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url("./../../5_shared/assets/fonts/Cause-Black.woff2") format("woff2");
     }
 }
 
