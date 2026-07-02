@@ -9,3 +9,8 @@ export interface IGame {
     developer: string;
     release_date: string;
 }
+
+export interface IGameParams {
+    genre?: string;
+    platform?: string;
+}
