@@ -1,48 +1,58 @@
 import { useVirtualizer } from "@tanstack/react-virtual";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useGames } from "@features/game/api/useGames.ts";
 
 
+const GAP = 20;
+const CARD_HEIGHT = 320;
 
-interface UseVirtualizedGamesOptions {
-    estimateSize?: () => number;
-    overscan?: number;
-    enabled?: boolean;
-}
+export const useVirtualizedGamesHook = () => {
 
-export const useVirtualizedGamesHook = (options?: UseVirtualizedGamesOptions) => {
-    const {
-        estimateSize = () => 280,
-        overscan = 9,
-        enabled = true,
-    } = options || {};
-
+    const { data: games = [], isLoading, error } = useGames();
     const parentRef = useRef<HTMLDivElement>(null);
-    const { data, isLoading, isError } = useGames();
 
-    const games = useMemo(() => {
-        return Array.isArray(data) ? data : [];
-    }, [data]);
+    const [columns, setColumns] = useState(4);
+
+    useEffect(() => {
+        const updateColumns = () => {
+            const width = window.innerWidth;
+            if (width < 640) setColumns(1);
+            else if (width < 768) setColumns(2);
+            else if (width < 1024) setColumns(3);
+            else setColumns(4);
+        };
+
+        updateColumns();
+        window.addEventListener("resize", updateColumns);
+        return () => {
+            window.removeEventListener("resize", updateColumns);
+        };
+    }, []);
+
+    const rows = useMemo(() => {
+        const result = [];
+        for (let i = 0; i < games.length; i += columns) {
+            result.push(games.slice(i, i + columns));
+        }
+        return result;
+    }, [games, columns]);
 
     const rowVirtualizer = useVirtualizer({
-        count: enabled && games.length > 0 ? games.length : 0,
+        count: games.length,
         getScrollElement: () => parentRef.current,
-        estimateSize,
-        overscan,
+        estimateSize: () => CARD_HEIGHT + GAP,
+        overscan: 3,
     });
-    const virtualItems = rowVirtualizer.getVirtualItems();
-    const totalSize = rowVirtualizer.getTotalSize();
 
     return {
-        parentRef,
+        rows,
+        columns,
         rowVirtualizer,
-        estimateSize,
-        overscan,
-        totalSize,
-        virtualItems,
+        parentRef,
         isLoading,
-        isError,
-        hasData: games.length > 0,
+        error,
+        GAP,
+        data: games,
     };
 
 }
