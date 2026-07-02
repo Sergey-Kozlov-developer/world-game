@@ -1,6 +1,6 @@
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useGames } from "@features/game/api/useGames.ts";
+import { useGetGamesQuery } from "@entities/game/api/gameApi.ts";
 
 
 const GAP = 20;
@@ -8,7 +8,8 @@ const CARD_HEIGHT = 320;
 
 export const useVirtualizedGamesHook = () => {
 
-    const { data: games = [], isLoading, error } = useGames();
+    const { data, isLoading, error } = useGetGamesQuery({});
+    const games = data || [];
     const parentRef = useRef<HTMLDivElement>(null);
 
     const [columns, setColumns] = useState(4);
@@ -38,10 +39,11 @@ export const useVirtualizedGamesHook = () => {
     }, [games, columns]);
 
     const rowVirtualizer = useVirtualizer({
-        count: games.length,
+        count: rows.length,
         getScrollElement: () => parentRef.current,
         estimateSize: () => CARD_HEIGHT + GAP,
         overscan: 3,
+        enabled: rows.length > 0,
     });
 
     return {

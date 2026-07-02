@@ -1,5 +1,5 @@
 import { Filter } from "@features/filter";
-import { useGames } from "@features/game/api/useGames.ts";
+// import { useGames } from "@features/game/api/useGames.ts";
 
 export const ChangeFilter = () => {
     // const {data: games} = useGames();

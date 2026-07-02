@@ -1,5 +1,5 @@
 import { GamesList } from "@features/game";
-import { GameFilter } from "@widgets/game-filter";
+// import { GameFilter } from "@widgets/game-filter";
 
 export const GameSection = () => {
     return (
@@ -7,7 +7,7 @@ export const GameSection = () => {
             <div className="container fixed top-18 flex justify-around items-center z-40">
                 <h2 className="text-center">Popular Games</h2>
                 <input type="text" placeholder="Search..." />
-                <GameFilter />
+                {/*<GameFilter />*/}
             </div>
 
             <section className="mt-14">
