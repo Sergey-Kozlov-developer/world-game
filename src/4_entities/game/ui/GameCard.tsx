@@ -1,11 +1,12 @@
 import type { IGame } from "@entities/game/model/types.ts";
 import { Card, CardDescription, CardHeader, CardTitle } from "@ui/shadcn/card.tsx";
+import { memo } from "react";
 
 interface IGameCardProps {
     game: IGame;
 }
 
-export const GameCard = ({ game }: IGameCardProps) => {
+export const GameCard = memo(({ game }: IGameCardProps) => {
     return (
         <Card className="relative mx-auto w-full max-w-sm pt-0">
             <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
@@ -20,4 +21,4 @@ export const GameCard = ({ game }: IGameCardProps) => {
             </CardDescription>
         </Card>
     );
-};
+});
