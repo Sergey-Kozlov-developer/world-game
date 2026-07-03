@@ -1,8 +1,9 @@
 import { GameCard } from "@entities/game";
 import { useVirtualizedGamesHook } from "@features/game/hooks/useVirtualizedGames.ts";
+import { memo } from "react";
 
 
-export const GamesList = () => {
+export const GamesList = memo(() => {
     const { rows, columns, rowVirtualizer, parentRef, isLoading, error, GAP } =
         useVirtualizedGamesHook();
 
@@ -67,4 +68,4 @@ export const GamesList = () => {
             </div>
         </div>
     );
-};
+});

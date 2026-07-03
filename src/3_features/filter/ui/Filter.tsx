@@ -26,13 +26,16 @@ export const Filter = ({
     );
 
     return (
-        <Select value={value || "All"} onValueChange={handleChange}>
+        <Select value={value || undefined} onValueChange={handleChange}>
             <SelectTrigger className="w-full max-w-48">
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent>
                 <SelectGroup>
                     <SelectLabel>{label}</SelectLabel>
+                    <SelectItem value="All" className="font-bold">
+                        All {label}
+                    </SelectItem>
                     {options.map((option) => (
                         <SelectItem
                             key={option.value}

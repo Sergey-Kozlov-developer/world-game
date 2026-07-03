@@ -8,13 +8,19 @@ import type {
 export const gameApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getGames: builder.query<IGameResponse, IGameParams>({
-            query: (params) => ({
-                url: "/games",
-                params: {
-                    genre: params?.genre || undefined,
-                    platform: params?.platform || undefined,
-                },
-            }),
+            query: (params) => {
+                const queryParams: Record<string, string>= {};
+                if(params?.platform){
+                    queryParams.platform = params.platform
+                }
+                if (params?.genre) {
+                    queryParams.category = params.genre;
+                }
+                return {
+                    url: "/games",
+                    params: queryParams
+                };
+            },
             transformResponse: (response: IGameResponse) => {
                 return Array.isArray(response) ? response : [];
             },
@@ -29,7 +35,6 @@ export const gameApi = baseApi.injectEndpoints({
     overrideExisting: false,
 });
 
-// Исправление: экспортируем хуки через деструктуризацию с явным указанием
 export const {
     useGetGamesQuery,
     useGetGameByIdQuery,

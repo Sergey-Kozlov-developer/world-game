@@ -1,6 +1,7 @@
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useGetGamesQuery } from "@entities/game/api/gameApi.ts";
+import { useFilterStore } from "@features/filter/model/store.ts";
 
 
 const GAP = 20;
@@ -8,7 +9,8 @@ const CARD_HEIGHT = 320;
 
 export const useVirtualizedGamesHook = () => {
 
-    const { data, isLoading, error } = useGetGamesQuery({});
+    const filters = useFilterStore(state => state.filters)
+    const { data, isLoading, error } = useGetGamesQuery(filters);
     const games = data || [];
     const parentRef = useRef<HTMLDivElement>(null);
 

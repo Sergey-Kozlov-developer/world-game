@@ -4,7 +4,9 @@ import type { IGameParams } from "@entities/game/model/types.ts";
 
 
 interface IFilterState {
-    filters: IGameParams
+    filters: IGameParams,
+    setGenre: (genre: string) => void,
+    setPlatform: (platform: string) => void,
 }
 
 const initialFilters: IGameParams = {
