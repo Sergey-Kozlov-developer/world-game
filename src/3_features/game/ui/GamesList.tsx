@@ -6,8 +6,23 @@ export const GamesList = () => {
     const { rows, columns, rowVirtualizer, parentRef, isLoading, error, GAP } =
         useVirtualizedGamesHook();
 
-    if (isLoading) return <div>Loading games...</div>;
-    if (error) return <div>Error: {error.message}</div>;
+    if (isLoading) {
+        return (
+            <div className="text-center py-8 text-muted-foreground">
+                Загрузка...
+            </div>
+        );
+    }
+
+    if (error) {
+        const errorMessage =
+            "message" in error ? error.message : "Неизвестная ошибка";
+        return (
+            <div className="text-center py-8 text-muted-foreground">
+                Ошибка: {errorMessage}
+            </div>
+        );
+    }
 
     return (
         <div ref={parentRef} className="h-[800px] overflow-x-auto">

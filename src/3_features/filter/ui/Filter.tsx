@@ -3,7 +3,7 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel, SelectSeparator,
+    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "@ui/shadcn/select.tsx";
@@ -31,19 +31,6 @@ export const Filter = ({
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent>
-                <SelectGroup>
-                    <SelectLabel>{label}</SelectLabel>
-                    {options.map((option) => (
-                        <SelectItem
-                            key={option.value}
-                            value={option.value}
-                            className="font-bold"
-                        >
-                            {option.label}
-                        </SelectItem>
-                    ))}
-                </SelectGroup>
-                <SelectSeparator />
                 <SelectGroup>
                     <SelectLabel>{label}</SelectLabel>
                     {options.map((option) => (
