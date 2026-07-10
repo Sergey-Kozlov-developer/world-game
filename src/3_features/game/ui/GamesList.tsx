@@ -48,11 +48,14 @@ export const GamesList = memo(() => {
                                 className="grid h-full"
                                 style={{
                                     gridTemplateColumns: `repeat(${columns}, 1fr)`,
-                                    gap: `${GAP}px`,
+                                    columnGap: `${GAP}px`,
+                                    rowGap: `${GAP}px`,
                                 }}
                             >
                                 {rowGames.map((game) => (
-                                    <GameCard key={game.id} game={game} />
+                                    <div key={game.id} className="pb-4">
+                                        <GameCard game={game} />
+                                    </div>
                                 ))}
 
                                 {rowGames.length < columns &&
